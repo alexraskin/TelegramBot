@@ -17,7 +17,7 @@ import aiofiles
 from aiogram import Bot, Dispatcher, executor, types
 
 from meme import Memer
-from utils import about_text, shield, charge, help_text, rocket_hammer
+from utils import about_text, shield, charge, help_text, rocket_hammer, fire_strike
 
 API_TOKEN = os.environ['API_KEY']
 REIN_URL = 'https://overwatch.fandom.com/wiki/Reinhardt'
@@ -31,8 +31,8 @@ dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
-    logging.info(message.from_user)
-    await message.reply("Crusader online.\nTo learn more about ReinFrogBot /help")
+  logging.info(message.from_user)
+  await message.reply("Crusader online.\nTo learn more about Reinhardt /help")
 
 
 @dp.message_handler(commands=['help'])
@@ -59,7 +59,7 @@ async def cats(message: types.Message):
 async def random_rein_quotes(message: types.Message):
   quote_list = []
   async with aiofiles.open('./data/quotes.txt', 'r') as quotes:
-    for quote in quotes:
+    async for quote in quotes:
       quote_list.append(quote)
   random_quote = random.choice(list(quote_list))
   logging.info(message.from_user)
@@ -82,11 +82,11 @@ async def rein_pic(message: types.Message):
     await message.reply_photo(photo, caption='REIN')
 
 
-@dp.message_handler(commands=['strats'])
+@dp.message_handler(commands=['strats', 'reinstrat'])
 async def rein_strategy(message: types.Message):
   async with aiofiles.open('./data/strategy.txt', 'r') as strats:
     strat_list = []
-    for strat in strats:
+    async for strat in strats:
       strat_list.append(strat)
   random_strat = random.choice(list(strat_list))
   logging.info(message.from_user)
@@ -97,7 +97,7 @@ async def rein_strategy(message: types.Message):
 async def rein_story(message: types.Message):
   async with aiofiles.open('./data/story.txt', 'r') as story:
     logging.info(message.from_user)
-    for stories in story:
+    async for stories in story:
       await message.answer(stories)
 
 
@@ -121,10 +121,15 @@ async def barrier_field(message: types.Message):
     await message.reply_photo(photo, caption=shield)
 
 
-@dp.message_handler(commands=['charge'])
+@dp.message_handler(commands=['charge', 'shift'])
 async def about_charge(message: types.Message):
   async with aiofiles.open('./data/about_images/charge.jpg', mode='rb') as photo:
     await message.reply_photo(photo, caption=charge)
+
+
+@dp.message_handler(commands=['firestrike'])
+async def send_fire_strike(message: types.Message):
+  await message.reply(fire_strike)
 
 
 if __name__ == '__main__':

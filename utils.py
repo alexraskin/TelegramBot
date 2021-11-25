@@ -1,11 +1,14 @@
 help_text = """/start
+/help
 /about
 /reinquote - random Reinhardt quote
 /reinpic - random Reinhardt picture
 /reinstrat - random Reinhardt strategy
 /development - Reinhardts development story
 /hammer
-/meme - random meme
+/shield
+/charge
+/meme
 """
 
 about_text = """'Justice will be done.'
