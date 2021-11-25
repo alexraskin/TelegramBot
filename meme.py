@@ -1,6 +1,7 @@
+import os
+
 import aiohttp
 import wget
-import os
 
 MEMES_TO_SAVE_PATH = 'data/memes'
 
