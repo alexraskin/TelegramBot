@@ -43,14 +43,14 @@ async def send_help(message: types.Message):
 
 @dp.message_handler(commands=['about'])
 async def send_about(message: types.Message):
-  logging.info(message.from_user)
-  with open('./data/rein/Reinhardt-portrait.png', 'rb') as photo:
+  async with aiofiles.open('./data/rein/Reinhardt-portrait.png', 'rb') as photo:
+    logging.info(message.from_user)
     await message.reply_photo(photo, caption=about_text)
 
 
 @dp.message_handler(regexp='(^cat[s]?$|puss)')
 async def cats(message: types.Message):
-    with open('./data/cats.jpg', 'rb') as photo:
+    async with aiofiles.open('./data/cats.jpg', 'rb') as photo:
       logging.info(message.from_user)
       await message.reply_photo(photo, caption='Cats are here 😺')
 
@@ -58,7 +58,7 @@ async def cats(message: types.Message):
 @dp.message_handler(commands=['reinquote'])
 async def random_rein_quotes(message: types.Message):
   quote_list = []
-  with open('./data/quotes.txt', 'r') as quotes:
+  async with aiofiles.open('./data/quotes.txt', 'r') as quotes:
     for quote in quotes:
       quote_list.append(quote)
   random_quote = random.choice(list(quote_list))
@@ -78,13 +78,13 @@ async def rein_pic(message: types.Message):
   files = os.listdir(path)
   random_photo = random.choice(files)
   logging.info(message.from_user)
-  with open(f'./data/rein/{random_photo}', 'rb') as photo:
+  async with aiofiles.open(f'./data/rein/{random_photo}', 'rb') as photo:
     await message.reply_photo(photo, caption='REIN')
 
 
 @dp.message_handler(commands=['strats'])
 async def rein_strategy(message: types.Message):
-  with open('./data/strategy.txt', 'r') as strats:
+  async with aiofiles.open('./data/strategy.txt', 'r') as strats:
     strat_list = []
     for strat in strats:
       strat_list.append(strat)
@@ -95,7 +95,7 @@ async def rein_strategy(message: types.Message):
 
 @dp.message_handler(commands=['story'])
 async def rein_story(message: types.Message):
-  with open('./data/story.txt', 'r') as story:
+  async with aiofiles.open('./data/story.txt', 'r') as story:
     logging.info(message.from_user)
     for stories in story:
       await message.answer(stories)
@@ -103,7 +103,7 @@ async def rein_story(message: types.Message):
 
 @dp.message_handler(commands=['development'])
 async def rein_development(message: types.Message):
-  with open('./data/development.txt', 'r') as development_file:
+  async with aiofiles.open('./data/development.txt', 'r') as development_file:
     text = development_file.readlines()
     logging.info(message.from_user)
     await message.answer(text)
