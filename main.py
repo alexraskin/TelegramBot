@@ -1,12 +1,15 @@
 """
 /start
+/help
 /about
 /reinquote - random Reinhardt quote
 /reinpic - random Reinhardt picture
 /reinstrat - random Reinhardt strategy
 /development - Reinhardts development story
 /hammer
-/meme - random meme
+/shield
+/charge
+/meme
 """
 
 import logging
@@ -23,7 +26,11 @@ API_TOKEN = os.environ['API_KEY']
 REIN_URL = 'https://overwatch.fandom.com/wiki/Reinhardt'
 
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+  filename='log.txt',
+  encoding='utf-8',
+  level=logging.INFO
+)
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
