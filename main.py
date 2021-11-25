@@ -1,23 +1,23 @@
 """
 /start
-/reinquote - get a random Reinhardt quote
-/reinpic - get a random Reinhardt picture
-/reinstrat - get a random Reinhardt strategy
-/development - learn about Reinhardts development
-/meme - get a random meme
-cats - cute cat photo
+/about
+/reinquote - random Reinhardt quote
+/reinpic - random Reinhardt picture
+/reinstrat - random Reinhardt strategy
+/development - Reinhardts development story
+/hammer
+/meme - random meme
 """
 
 import logging
 import os
 import random
-import aiofiles
 
+import aiofiles
 from aiogram import Bot, Dispatcher, executor, types
 
-
 from meme import Memer
-from utils import help_text, about_text, charge, barrier_field, rocket_hammer
+from utils import about_text, shield, charge, help_text, rocket_hammer
 
 API_TOKEN = os.environ['API_KEY']
 REIN_URL = 'https://overwatch.fandom.com/wiki/Reinhardt'
@@ -108,10 +108,23 @@ async def rein_development(message: types.Message):
     logging.info(message.from_user)
     await message.answer(text)
 
-@dp.message_handler(commands=['hammer'])
+
+@dp.message_handler(commands=['hammer', 'rockethammer'])
 async def hammer(message: types.Message):
-  async with aiofiles.open('./data/about_images/hammer.png', mode='rb') as photo:
+  async with aiofiles.open('./data/about_images/rocket-hammer.jpg', mode='rb') as photo:
     await message.reply_photo(photo, caption=rocket_hammer)
+
+
+@dp.message_handler(commands=['barrier', 'shield'])
+async def barrier_field(message: types.Message):
+  async with aiofiles.open('./data/about_images/shield.jpg', mode='rb') as photo:
+    await message.reply_photo(photo, caption=shield)
+
+
+@dp.message_handler(commands=['charge'])
+async def about_charge(message: types.Message):
+  async with aiofiles.open('./data/about_images/charge.jpg', mode='rb') as photo:
+    await message.reply_photo(photo, caption=charge)
 
 
 if __name__ == '__main__':
