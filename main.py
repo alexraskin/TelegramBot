@@ -3,9 +3,9 @@
 /reinquote - get a random Reinhardt quote
 /reinpic - get a random Reinhardt picture
 /meme - get a random meme
-cats - cute cat photo
 /reinstrat - get a random Reinhardt Strategy
 /development - learn about Reinhardts Development
+cats - cute cat photo
 """
 
 import os
@@ -19,10 +19,9 @@ from meme import Memer
 API_TOKEN = os.environ['API_KEY']
 REIN_URL = 'https://overwatch.fandom.com/wiki/Reinhardt'
 
-# Configure logging
+
 logging.basicConfig(level=logging.INFO)
 
-# Initialize bot and dispatcher
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
@@ -80,6 +79,7 @@ async def rein_strategy(message: types.Message):
   logging.info(message.from_user)
   await message.answer(random_strat)
 
+
 @dp.message_handler(commands=['story'])
 async def rein_story(message: types.Message):
   with open('./data/story.txt', 'r') as story:
@@ -87,12 +87,14 @@ async def rein_story(message: types.Message):
     for stories in story:
       await message.answer(stories)
 
+
 @dp.message_handler(commands=['development'])
 async def rein_development(message: types.Message):
   with open('./data/development.txt', 'r') as development_file:
     text = development_file.readlines()
     logging.info(message.from_user)
     await message.answer(text)
+
 
 async def send_memes(bot_to_run, chat_id):
     success_sent = False
@@ -110,7 +112,6 @@ async def send_memes(bot_to_run, chat_id):
             count_tries += 1
         except HTTPError as exc:
             logging.error(f'HTTP Error on chat_id={chat_id}: {exc}')
-
 
 
 if __name__ == '__main__':
