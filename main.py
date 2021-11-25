@@ -3,8 +3,9 @@
 /reinquote - get a random Reinhardt quote
 /reinpic - get a random Reinhardt picture
 /meme - get a random meme
-/cats - cute cat photo
-reinstrat - get a random Reinhardt Strategy
+cats - cute cat photo
+/reinstrat - get a random Reinhardt Strategy
+/development - learn about Reinhardts Development
 """
 
 import os
@@ -71,15 +72,19 @@ async def rein_strategy(message: types.Message):
     for strat in strats:
       strat_list.append(strat)
   random_strat = random.choice(list(strat_list))
-  await message.reply(random_strat)
+  await message.answer(random_strat)
 
 @dp.message_handler(commands=['story'])
 async def rein_story(message: types.Message):
   with open('./data/story.txt', 'r') as story:
-    story_list = []
-    for i in story:
-      story_list.append(i)
-    await message.reply(i)
+    text = story.readlines()
+    await message.answer(text)
+
+@dp.message_handler(commands=['development'])
+async def rein_development(message: types.Message):
+  with open('./data/development.txt', 'r') as development_file:
+    text = development_file.readlines()
+    await message.answer(text)
 
 async def send_memes(bot_to_run, chat_id):
     success_sent = False
