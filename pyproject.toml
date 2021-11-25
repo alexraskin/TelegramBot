@@ -11,6 +11,7 @@ aiohttp = "^3.8.1"
 wget = "^3.2"
 replit = "^3.2.4"
 isort = "^5.10.1"
+aiofiles = "^0.7.0"
 
 [tool.poetry.dev-dependencies]
 
