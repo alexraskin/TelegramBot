@@ -2,9 +2,9 @@
 /start
 /reinquote - get a random Reinhardt quote
 /reinpic - get a random Reinhardt picture
-/meme - get a random meme
 /reinstrat - get a random Reinhardt Strategy
 /development - learn about Reinhardts Development
+/meme - get a random meme
 cats - cute cat photo
 """
 
@@ -14,7 +14,7 @@ import random
 
 from aiogram import Bot, Dispatcher, executor, types
 
-from utils import send_memes
+from utils import send_memes, about_text
 
 API_TOKEN = os.environ['API_KEY']
 REIN_URL = 'https://overwatch.fandom.com/wiki/Reinhardt'
@@ -26,13 +26,16 @@ bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
 
-@dp.message_handler(commands=['start', 'help'])
+@dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
-    """
-    This handler will be called when user sends `/start` or `/help` command
-    """
     logging.info(message.from_user)
     await message.reply("Crusader online.")
+
+
+@dp.message_handler(commands=['about', 'help'])
+async def send_info(message: types.Message):
+  logging.info(message.from_user)
+  await message.reply(about_text)
 
 
 @dp.message_handler(regexp='(^cat[s]?$|puss)')

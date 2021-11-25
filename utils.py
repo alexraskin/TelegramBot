@@ -7,6 +7,15 @@ from meme import Memer
 
 logging.basicConfig(level=logging.INFO)
 
+about_text = """/start
+/reinquote - get a random Reinhardt quote
+/reinpic - get a random Reinhardt picture
+/reinstrat - get a random Reinhardt Strategy
+/development - learn about Reinhardts Development
+/meme - get a random meme
+cats - cute cat photo
+"""
+
 async def send_memes(bot_to_run, chat_id):
     success_sent = False
     count_tries = 0
@@ -23,3 +32,4 @@ async def send_memes(bot_to_run, chat_id):
             count_tries += 1
         except HTTPError as exc:
             logging.error(f'HTTP Error on chat_id={chat_id}: {exc}')
+
