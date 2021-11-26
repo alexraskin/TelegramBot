@@ -4,6 +4,7 @@ import random
 
 import aiofiles
 from aiogram import Bot, Dispatcher, executor, types
+from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton
 
 from reinhardt import ReinhardtBot
 from utils import (
@@ -29,6 +30,24 @@ logging.basicConfig(
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
+
+
+
+keyboard1 = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add("Doggo? 🐕").add("Meme? 🐸")
+
+
+@dp.message_handler(commands=['funny'])
+async def welcome(message: types.Message):
+    await message.reply('Pick One?', reply_markup=keyboard1)
+
+@dp.message_handler()
+async def kb_answer(message: types.Message):
+    if message.text == 'Doggo? 🐕':
+        await ReinhardtBot.send_photo(bot, message.chat.id, dog=True)
+    elif message.text == 'Meme? 🐸':
+        await ReinhardtBot.send_photo(bot, message.chat.id, meme=True)
+    else:
+        await message.reply(f"Your message is: {message.text}")
 
 
 @dp.message_handler(commands=['start'])
