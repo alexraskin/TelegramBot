@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 
 MEMES_TO_SAVE_PATH = 'data/memes'
 
-class Memer:
+class ReinhardtBot:
     async def get_random_meme(self):
         self._clear_dir()
         async with aiohttp.ClientSession() as session:
@@ -40,7 +40,7 @@ class Memer:
         count_tries = 0
         while not success_sent and count_tries < 5:
             try:
-                meme, meme_ext = await Memer().get_random_meme()
+                meme, meme_ext = await ReinhardtBot().get_random_meme()
                 if meme_ext.lower() == 'gif':
                     await bot_to_run.send_document(chat_id, meme)
                 else:

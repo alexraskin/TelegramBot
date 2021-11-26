@@ -19,8 +19,8 @@ import random
 import aiofiles
 from aiogram import Bot, Dispatcher, executor, types
 
-from meme import Memer
-from utils import about_text, shield, charge, help_text, rocket_hammer, fire_strike
+from reinhardt import ReinhardtBot
+from utils import about_text, shield, charge, help_text, rocket_hammer, fire_strike, earth_shatter
 
 API_TOKEN = os.environ['API_KEY']
 REIN_URL = 'https://overwatch.fandom.com/wiki/Reinhardt'
@@ -77,7 +77,7 @@ async def random_rein_quotes(message: types.Message):
 @dp.message_handler(commands=['meme'])
 async def send_meme_handler(message):
     logging.info(message.from_user)
-    await Memer.send_memes(bot, message.chat.id)
+    await ReinhardtBot.send_memes(bot, message.chat.id)
 
 
 @dp.message_handler(commands=['reinpic'])
@@ -137,7 +137,14 @@ async def about_charge(message: types.Message):
 
 @dp.message_handler(commands=['firestrike'])
 async def send_fire_strike(message: types.Message):
-  await message.reply(fire_strike)
+  async with aiofiles.open('./data/about_images/firestrike.png', mode='rb') as photo:
+    await message.reply_photo(photo, caption=fire_strike)
+
+
+@dp.message_handler(commands=['earthshatter'])
+async def send_earth_shatter(message: types.Message):
+  async with aiofiles.open('./data/about_images/earthshatter.jpg', mode='rb') as photo:
+    await message.reply_photo(photo, caption=earth_shatter)
 
 
 if __name__ == '__main__':

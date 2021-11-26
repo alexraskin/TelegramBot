@@ -5,9 +5,11 @@ help_text = """/start
 /reinpic - random Reinhardt picture
 /reinstrat - random Reinhardt strategy
 /development - Reinhardts development story
+/earthshatter
 /hammer
 /shield
 /charge
+/firestrike
 /meme
 """
 
