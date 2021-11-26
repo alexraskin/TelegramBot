@@ -28,6 +28,7 @@ REIN_URL = 'https://overwatch.fandom.com/wiki/Reinhardt'
 
 logging.basicConfig(
   filename='log.txt',
+  filemode='a',
   encoding='utf-8',
   level=logging.INFO
 )
@@ -111,7 +112,7 @@ async def rein_story(message: types.Message):
 @dp.message_handler(commands=['development'])
 async def rein_development(message: types.Message):
   async with aiofiles.open('./data/development.txt', 'r') as development_file:
-    text = development_file.readlines()
+    text = await development_file.readlines()
     logging.info(message.from_user)
     await message.answer(text)
 
