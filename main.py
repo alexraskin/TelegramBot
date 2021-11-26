@@ -74,7 +74,7 @@ async def send_meme_handler(message: types.Message):
     await ReinhardtBot.send_photo(bot, message.chat.id, meme=True)
 
 
-@dp.message_handler(commands=['dog', 'doggo'])
+@dp.message_handler(commands=['dog', 'doggo', 'hund'])
 async def send_dog_handler(message: types.Message):
   logging.info(message.from_user)
   await ReinhardtBot.send_photo(bot, message.chat.id, dog=True)
@@ -150,6 +150,10 @@ async def send_earth_shatter(message: types.Message):
 async def send_git_info(message: types.Message):
   await message.answer('https://github.com/alexraskin/TelegramBot')
 
+
+@dp.message_handler(regexp='(^best rein[s]?$)')
+async def best_rein_handler(message: types.Message):
+  await message.answer('LhCloudy27')
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
