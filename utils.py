@@ -11,6 +11,8 @@ help_text = """/start
 /charge
 /firestrike
 /meme
+/doggo
+/cat
 """
 
 about_text = """'Justice will be done.'

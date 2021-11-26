@@ -1,17 +1,3 @@
-"""
-/start
-/help
-/about
-/reinquote - random Reinhardt quote
-/reinpic - random Reinhardt picture
-/reinstrat - random Reinhardt strategy
-/development - Reinhardts development story
-/hammer
-/shield
-/charge
-/meme
-"""
-
 import logging
 import os
 import random
@@ -20,7 +6,15 @@ import aiofiles
 from aiogram import Bot, Dispatcher, executor, types
 
 from reinhardt import ReinhardtBot
-from utils import about_text, shield, charge, help_text, rocket_hammer, fire_strike, earth_shatter
+from utils import (
+  about_text,
+  shield,
+  charge,
+  help_text,
+  rocket_hammer,
+  fire_strike,
+  earth_shatter,
+)
 
 API_TOKEN = os.environ['API_KEY']
 REIN_URL = 'https://overwatch.fandom.com/wiki/Reinhardt'
@@ -75,10 +69,15 @@ async def random_rein_quotes(message: types.Message):
       
 
 @dp.message_handler(commands=['meme'])
-async def send_meme_handler(message):
+async def send_meme_handler(message: types.Message):
     logging.info(message.from_user)
-    await ReinhardtBot.send_memes(bot, message.chat.id)
+    await ReinhardtBot.send_photo(bot, message.chat.id, meme=True)
 
+
+@dp.message_handler(commands=['dog', 'doggo'])
+async def send_dog_handler(message: types.Message):
+  logging.info(message.from_user)
+  await ReinhardtBot.send_photo(bot, message.chat.id, dog=True)
 
 @dp.message_handler(commands=['reinpic'])
 async def rein_pic(message: types.Message):
@@ -145,6 +144,11 @@ async def send_fire_strike(message: types.Message):
 async def send_earth_shatter(message: types.Message):
   async with aiofiles.open('./data/about_images/earthshatter.jpg', mode='rb') as photo:
     await message.reply_photo(photo, caption=earth_shatter)
+
+
+@dp.message_handler(commands=['github', 'bot'])
+async def send_git_info(message: types.Message):
+  await message.answer('https://github.com/alexraskin/TelegramBot')
 
 
 if __name__ == '__main__':
