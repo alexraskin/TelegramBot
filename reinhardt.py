@@ -23,11 +23,11 @@ class ReinhardtBot:
             async with session.get(url) as response:
                 _json = await response.json()
         if url.endswith('random'):
-          download = _json['message']
-          filename = _json['message'].split("/")[-1]
+            download = _json['message']
+            filename = _json['message'].split("/")[-1]
         elif url.endswith('gimme'):
-          download = _json['url']
-          filename = _json['url'].split("/")[-1]
+            download = _json['url']
+            filename = _json['url'].split("/")[-1]
         filename = os.path.join(path, filename)
         wget.download(download, filename)
         _img = open(filename, 'rb')
@@ -46,20 +46,15 @@ class ReinhardtBot:
                 pass
 
     @staticmethod
-    async def send_photo(
-      bot_to_run, 
-      chat_id,
-      meme=False,
-      dog=False
-    ):
+    async def send_photo(bot_to_run, chat_id, meme=False, dog=False):
         if meme == True:
-          url = 'https://meme-api.herokuapp.com/gimme'
-          path = 'data/memes'
+            url = 'https://meme-api.herokuapp.com/gimme'
+            path = 'data/memes'
         elif dog == True:
-          url = 'https://dog.ceo/api/breeds/image/random'
-          path = 'data/dogs'
+            url = 'https://dog.ceo/api/breeds/image/random'
+            path = 'data/dogs'
         else:
-          return
+            return
         success_sent = False
         count_tries = 0
         while not success_sent and count_tries < 5:
