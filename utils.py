@@ -14,6 +14,7 @@ help_text = """/start
 /meme
 /doggo
 cat
+/profile pc us maintank#11909
 """
 
 about_text = """'Justice will be done.'

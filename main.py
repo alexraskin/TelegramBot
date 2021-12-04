@@ -5,12 +5,12 @@ import random
 import aiofiles
 from aiogram import Bot, Dispatcher, executor, types
 
+from overwatch import OverwatchAPI
 from reinhardt import ReinhardtBot
 from utils import (about_text, charge, earth_shatter, fire_strike, help_text,
                    rocket_hammer, shield)
 
 API_TOKEN = os.environ['API_KEY']
-REIN_URL = 'https://overwatch.fandom.com/wiki/Reinhardt'
 
 logging.basicConfig(filename='log.txt',
                     filemode='a',
@@ -21,11 +21,24 @@ bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
 
+@dp.message_handler(commands=['ow', 'profile'])
+async def overwatch_hanlder(message: types.Message):
+    logging.info(message.from_user)
+    if message.get_args() is None:
+      await message.reply('Incorret Syntax: Example: /ow pc us maintank#11909')
+    await OverwatchAPI().get_overwatch_proifle(
+        bot,
+        message.chat.id,
+        platform=message.get_args()[0:2].strip(),
+        region=message.get_args()[3:5].strip(),
+        tag=message.get_args()[6::].strip())
+
+
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
     logging.info(message.from_user)
     await message.reply(
-        "Crusader online. ⚔️\nTo learn more about Reinhardt /help 🔨\nPlease let me know if you have any problems @thetruehooha 📧"
+        f"Crusader online. ⚔️\nTo learn more about Reinhardt /help Prost! {message.from_user.first_name}"
     )
 
 
@@ -41,6 +54,13 @@ async def send_about(message: types.Message):
                              'rb') as photo:
         logging.info(message.from_user)
         await message.reply_photo(photo, caption=about_text)
+
+
+@dp.message_handler(commands=['text'])
+async def random_text(message: types.Message):
+    logging.info(message.from_user)
+    hello = await ReinhardtBot.generate_text("Hello")
+    await message.reply(hello)
 
 
 @dp.message_handler(regexp='(^cat[s]?$|puss)')

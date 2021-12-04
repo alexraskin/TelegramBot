@@ -1,0 +1,54 @@
+{
+  "competitiveStats": {
+    "awards": {
+      "cards": 7,
+      "medals": 39,
+      "medalsBronze": 9,
+      "medalsSilver": 13,
+      "medalsGold": 17
+    },
+    "games": {
+      "played": 15,
+      "won": 7
+    }
+  },
+  "endorsement": 3,
+  "endorsementIcon": "https://static.playoverwatch.com/svg/icons/endorsement-frames-3c9292c49d.svg#_3",
+  "gamesWon": 3229,
+  "icon": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/d4a029da283b4f710ee8319d148e151c55e66390750905dc0069d40c28125e48.png",
+  "level": 66,
+  "levelIcon": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/f9bc9c6bb95f07f4e882b9e003ba7fa5ca6552fb8e0c27473a8b031714670116.png",
+  "name": "reinfrog#1245",
+  "prestige": 7,
+  "prestigeIcon": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/426c754c76cd12e6aacd30293a67363571341eea37880df549d3e02015a588fe.png",
+  "private": false,
+  "quickPlayStats": {
+    "awards": {
+      "cards": 1924,
+      "medals": 13553,
+      "medalsBronze": 4147,
+      "medalsSilver": 4733,
+      "medalsGold": 4673
+    },
+    "games": {
+      "played": 5677,
+      "won": 3007
+    }
+  },
+  "rating": 2800,
+  "ratingIcon": "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png",
+  "ratings": [
+    {
+      "level": 3089,
+      "role": "tank",
+      "roleIcon": "https://static.playoverwatch.com/img/pages/career/icon-tank-8a52daaf01.png",
+      "rankIcon": "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-DiamondTier.png"
+    },
+    {
+      "level": 2511,
+      "role": "support",
+      "roleIcon": "https://static.playoverwatch.com/img/pages/career/icon-support-46311a4210.png",
+      "rankIcon": "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png"
+    }
+  ]
+}
