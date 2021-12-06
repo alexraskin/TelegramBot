@@ -1,7 +1,7 @@
-import aiohttp
 import logging
-
 from urllib.error import HTTPError
+
+import aiohttp
 from aiogram import exceptions
 
 
